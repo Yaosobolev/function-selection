@@ -17,6 +17,7 @@ import {
   TableCoefficients,
   TableDeviation,
   MinSumSquaresDisplay,
+  LeastSquaresChart,
 } from "@/components/shared";
 
 interface Props {
@@ -71,27 +72,53 @@ export const Result: React.FC<Props> = ({ className, id }) => {
     deviationLinear: number,
     deviationPower: number,
     deviationQuadratic: number
-  ): React.ReactNode => {
+  ): {
+    value: React.ReactNode;
+    text: string;
+    coefficients: { a: number; b: number; c?: number };
+  } => {
     if (
       deviationLinear <= deviationPower &&
       deviationLinear <= deviationQuadratic
     ) {
-      return "y = kx + b";
+      return {
+        value: "y = kx + b",
+        text: "Линейная",
+        coefficients: {
+          a: coefficientsLeastSquaresLinear.a,
+          b: coefficientsLeastSquaresLinear.b,
+        },
+      };
     } else if (
       deviationPower <= deviationLinear &&
       deviationPower <= deviationQuadratic
     ) {
-      return (
-        <span>
-          y = cx<sup>m</sup>
-        </span>
-      );
+      return {
+        value: (
+          <span>
+            y = cx<sup>m</sup>
+          </span>
+        ),
+        text: "Степенная",
+        coefficients: {
+          a: coefficientsLeastSquaresPower.a,
+          b: coefficientsLeastSquaresPower.b,
+        },
+      };
     } else {
-      return (
-        <span>
-          y = ax<sup>2</sup> + bx + c
-        </span>
-      );
+      return {
+        value: (
+          <span>
+            y = ax<sup>2</sup> + bx + c
+          </span>
+        ),
+        text: "Квадратичная",
+        coefficients: {
+          a: coefficientsLeastSquaresQuadratic.a,
+          b: coefficientsLeastSquaresQuadratic.b,
+          c: coefficientsLeastSquaresQuadratic.c,
+        },
+      };
     }
   };
 
@@ -111,6 +138,7 @@ export const Result: React.FC<Props> = ({ className, id }) => {
 
       {isOpenSolution && (
         <>
+          <LeastSquaresChart originalData={points} />
           <TableCoefficients
             coefficients={coefficientsLeastSquaresLinear}
             functionView={"y = kx + b"}
@@ -156,6 +184,7 @@ export const Result: React.FC<Props> = ({ className, id }) => {
             valueDeviation={resultDeviationLeastSquaresQuadratic}
           />
           <MinSumSquaresDisplay
+            originalData={points}
             functionView={calcMinSumSquares(
               resultDeviationLeastSquaresLinear,
               resultDeviationLeastSquaresPower,

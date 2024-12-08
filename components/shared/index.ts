@@ -5,3 +5,4 @@ export { TableValuesConditions } from "./table-values-conditions";
 export { TableCoefficients } from "./table-coefficients";
 export { TableDeviation } from "./table-deviation";
 export { MinSumSquaresDisplay } from "./min-sum-squares-display";
+export { LeastSquaresChart } from "./least-squares-chart";
