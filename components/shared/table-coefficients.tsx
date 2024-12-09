@@ -5,6 +5,7 @@ interface Props {
     a: number;
     b: number;
     c?: number;
+    d?: number;
   };
   functionView: React.ReactNode;
   type: string;
@@ -17,7 +18,7 @@ export const TableCoefficients: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <h2 className="text-xl mt-7 text-nowrap">
+      <h2 className="flex items-center text-xl mt-7 text-nowrap">
         Результат вычислений коэффициентов функции: {functionView}
       </h2>
       <Table className="w-[300px]">
@@ -30,6 +31,7 @@ export const TableCoefficients: React.FC<Props> = ({
               {type === "2" ? "m" : "b"} = {coefficients.b}
             </TableCell>
             {coefficients.c && <TableCell>c = {coefficients.c}</TableCell>}
+            {coefficients.d && <TableCell>d = {coefficients.d}</TableCell>}
           </TableRow>
         </TableBody>
       </Table>

@@ -11,7 +11,7 @@ export const TableDeviation: React.FC<Props> = ({
 }) => {
   return (
     <>
-      <h2 className="text-xl mt-7 text-nowrap">
+      <h2 className="flex items-center text-xl mt-7 text-nowrap">
         Сумма квадратов отклонений функции: {functionView}
       </h2>
       <Table className="w-[300px]">

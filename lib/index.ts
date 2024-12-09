@@ -5,3 +5,7 @@ export { deviationLeastSquaresPower } from "./deviation-least-squares-power";
 export { leastSquaresQuadratic } from "./least-squares-quadratic";
 export { solveLinearSystem } from "./solve-linear-system";
 export { deviationLeastSquaresQuadratic } from "./deviation-least-squares-quadratic";
+export { leastSquaresHyperbolic } from "./least-squares-hyperbolic";
+export { deviationLeastSquaresHyperbolic } from "./deviation-least-squares-hyperbolic";
+export { leastSquaresCubic } from "./least-squares-cubic";
+export { deviationLeastSquaresCubic } from "./deviation-least-squares-cubic";
